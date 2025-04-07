@@ -19,7 +19,6 @@ public class ItemStackHashRegister {
     public Yaml yaml = new Yaml();
 
     public enum ITMES {
-        //TODO: change to an array
         RANKUP,
         COURSES,
         COMMUNITY,
@@ -51,7 +50,7 @@ public class ItemStackHashRegister {
             modifyMeta(ITMES.RANKUP,item,displayName,lore);
             lore.clear();
 
-            HashMap<String,Object> courses = (HashMap<String, Object>) obj.get("CPURSES");
+            HashMap<String,Object> courses = (HashMap<String, Object>) obj.get("COURSES");
             lore = emptyLore;
             lore.add((String) courses.get("lore"));
             displayName = (String) courses.get("name");
@@ -59,46 +58,56 @@ public class ItemStackHashRegister {
             modifyMeta(ITMES.COURSES,item,displayName,lore);
             lore.clear();
 
+            HashMap<String,Object> community = (HashMap<String, Object>) obj.get("COMMUNITY");
+            lore = emptyLore;
+            lore.add((String) community.get("lore"));
+            displayName = (String) community.get("name");
+            item = new ItemStack(Material.getMaterial((String) community.get("material")),1);
+            modifyMeta(ITMES.COMMUNITY,item,displayName,lore);
+            lore.clear();
 
+            HashMap<String,Object> pcp = (HashMap<String, Object>) obj.get("PCP");
+            lore = emptyLore;
+            lore.add((String) pcp.get("lore"));
+            displayName = (String) pcp.get("name");
+            item = new ItemStack(Material.getMaterial((String) pcp.get("material")),1);
+            modifyMeta(ITMES.PCP,item,displayName,lore);
+            lore.clear();
+
+            HashMap<String,Object> prac = (HashMap<String, Object>) obj.get("PRAC");
+            lore = emptyLore;
+            lore.add((String) prac.get("lore"));
+            displayName = (String) prac.get("name");
+            item = new ItemStack(Material.getMaterial((String) prac.get("material")),1);
+            modifyMeta(ITMES.PRAC,item,displayName,lore);
+            lore.clear();
+
+            HashMap<String,Object> fly = (HashMap<String, Object>) obj.get("FLY");
+            lore = emptyLore;
+            lore.add((String) fly.get("lore"));
+            displayName = (String) fly.get("name");
+            item = new ItemStack(Material.getMaterial((String) fly.get("material")),1);
+            modifyMeta(ITMES.FLY,item,displayName,lore);
+            lore.clear();
+
+            HashMap<String,Object> selector = (HashMap<String, Object>) obj.get("SUGAR_CANE");
+            lore = emptyLore;
+            lore.add((String) selector.get("lore"));
+            displayName = (String) selector.get("name");
+            item = new ItemStack(Material.getMaterial((String) selector.get("material")),1);
+            modifyMeta(ITMES.HUB,item,displayName,lore);
+            lore.clear();
+
+            HashMap<String,Object> none = (HashMap<String, Object>) obj.get("OCCUPIED_SLOT");
+            lore = emptyLore;
+            lore.add((String) none.get("lore"));
+            displayName = (String) none.get("name");
+            item = new ItemStack(Material.getMaterial((String) none.get("material")),1);
+            modifyMeta(ITMES.OCCUPIED_SLOT,item,displayName,lore);
+            lore.clear();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-
-        lore = emptyLore;
-        lore.add("Try out community 2p Parkour Courses!");
-        item = new ItemStack(Material.SLIME_BALL  ,1);
-        modifyMeta(ITMES.COMMUNITY,item,"§b§lCommunity", lore);
-        lore.clear();
-
-        lore = emptyLore;
-        lore.add("Teleports to previous checkpoint");
-        item = new ItemStack(Material.CARROT_STICK  ,1);
-        modifyMeta(ITMES.PCP,item,"§e§lPCP Wand", lore);
-        lore.clear();
-
-        lore = emptyLore;
-        lore.add("Puts you into practice mode");
-        item = new ItemStack(Material.BEACON  ,1);
-        modifyMeta(ITMES.PRAC,item,"§b§lToggle practice", lore);
-        lore.clear();
-
-        lore = emptyLore;
-        lore.add("Puts you into fly mode");
-        item = new ItemStack(Material.FEATHER  ,1);
-        modifyMeta(ITMES.FLY,item,"§e§lToggle Fly", lore);
-        lore.clear();
-
-        lore = emptyLore;
-        lore.add("Select Games to Play!");
-        item = new ItemStack(Material.SUGAR_CANE  ,1);
-        modifyMeta(ITMES.HUB,item,"§e§lGame Selector", lore);
-        lore.clear();
-
-        lore = emptyLore;
-        item = new ItemStack(Material.STAINED_GLASS_PANE  ,1);
-        modifyMeta(ITMES.OCCUPIED_SLOT,item," ", lore);
-        lore.clear();
-
     }
 
 
