@@ -1,0 +1,19 @@
+name: parkourPlugin
+version: '${project.version}'
+main: github.com.raspberry.parkourplugin.ParkourPlugin
+
+commands:
+  pcp:
+    description: teleport to previous checkpoint
+    usage: /<command>
+    permission: yourplugin.yourcommandpermission
+
+  runtest:
+    description: runs test for development
+    usage: /<command>
+    permission: yourplugin.yourcommandpermission
+
+  menu:
+    description: opens menu for NPC functionality
+    usage: /<command>
+    permission: yourplugin.yourcommandpermission
