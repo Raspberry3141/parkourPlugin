@@ -34,7 +34,7 @@ public class pracEventHandler implements Listener {
 
     @EventHandler
     public void toggleFly(PlayerInteractEvent event) {
-        if ( (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) && event.getItem().getItemMeta().equals(items.SpecialItems.get(ItemStackHashRegister.ITMES.FLY).getItemMeta())) {
+        if ( event.getAction() != null && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) && event.getItem().getItemMeta().equals(items.SpecialItems.get(ItemStackHashRegister.ITMES.FLY).getItemMeta())) {
             if(event.getPlayer().getAllowFlight()) {
                 event.getPlayer().setAllowFlight(false);
                 event.getPlayer().sendMessage(ChatColor.YELLOW + "Flight Deactivated");

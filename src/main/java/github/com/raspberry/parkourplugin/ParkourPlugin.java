@@ -1,5 +1,6 @@
 package github.com.raspberry.parkourplugin;
 
+import github.com.raspberry.parkourplugin.DiskManager.playerEvents;
 import github.com.raspberry.parkourplugin.GUIInventories.InventoryList;
 import github.com.raspberry.parkourplugin.GUIInventories.ItemStackHashRegister;
 import github.com.raspberry.parkourplugin.GUIInventories.MenuCommand;
@@ -33,6 +34,8 @@ public final class ParkourPlugin extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new RightCLickItemInMenuListener(invlist,itemhash),this);
         this.getCommand("runtest").setExecutor(new runTest(itemhash,invlist));
+
+        getServer().getPluginManager().registerEvents(new playerEvents(),this);
 
     }
 
