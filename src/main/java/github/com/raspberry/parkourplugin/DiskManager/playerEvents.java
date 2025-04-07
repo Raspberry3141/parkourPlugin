@@ -22,10 +22,20 @@ public class playerEvents implements Listener {
         FileInputStream inputStream = null;
         try {
             inputStream = new FileInputStream("C:\\Database\\Players.yml");
-            HashMap<String,Object> players = yaml.load(inputStream);
+            HashMap<String, Object> players = yaml.load(inputStream);
 
-            //Bukkit.getLogger().info(String.valueOf(players.containsKey((Object) event.getPlayer().getUniqueId().toString())));
-            if (players.get(event.getPlayer().getUniqueId().toString()) == null) {
+            Bukkit.getLogger().info(event.getPlayer().getUniqueId().toString());
+            UUID playerUuid = event.getPlayer().getUniqueId();
+            Object foundUuid = players.get(playerUuid);
+
+            if (foundUuid != null) {
+                // Proceed with the foundUuid
+            } else {
+                // Handle the case where the UUID is not found
+                Bukkit.getLogger().warning("Player UUID " + playerUuid + " not found in the players map.");
+            }
+
+            if (foundUuid== null) {
                 UUID newPlayerUUID = event.getPlayer().getUniqueId();
                 InetSocketAddress newPlayerIP = event.getPlayer().getAddress();
 
