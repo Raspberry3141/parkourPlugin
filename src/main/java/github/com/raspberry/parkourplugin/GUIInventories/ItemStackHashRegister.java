@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class ItemStackHashRegister {
     public HashMap<ITMES,ItemStack> SpecialItems = new HashMap<ITMES,ItemStack>();
-    public Yaml yaml = new Yaml();
+    Yaml yaml = new Yaml();
 
     public enum ITMES {
         RANKUP,

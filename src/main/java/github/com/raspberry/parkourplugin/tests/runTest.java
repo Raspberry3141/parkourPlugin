@@ -26,6 +26,7 @@ public class runTest implements CommandExecutor {
         player.getInventory().addItem(factory.SpecialItems.get(ItemStackHashRegister.ITMES.PRAC));
         player.getInventory().addItem(factory.SpecialItems.get(ItemStackHashRegister.ITMES.PCP));
         player.getInventory().addItem(factory.SpecialItems.get(ItemStackHashRegister.ITMES.FLY));
+        System.out.println(player.getAddress().getAddress());
 
 
 

@@ -17,7 +17,6 @@ public final class ParkourPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
         pracManager pracsystem = new pracManager();
         //TODO: the itemhash is only craeted after /runTest is run. rmove th initialization somewhere after this method, but before usages.
         ItemStackHashRegister itemhash = new ItemStackHashRegister();

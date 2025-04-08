@@ -3,6 +3,7 @@ package github.com.raspberry.parkourplugin.GUIInventories;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -31,7 +32,7 @@ public class RightCLickItemInMenuListener implements Listener {
 
     @EventHandler
     public void inventoryClick(InventoryClickEvent event) {
-        if ((event.isRightClick() || event.isLeftClick()) && event.getCurrentItem() != null) {
+        if ((event.isRightClick() || event.isLeftClick()) && !event.getCurrentItem().getType().equals(Material.AIR)) {
             if (event.getCurrentItem().getItemMeta().equals(items.get(ItemStackHashRegister.ITMES.RANKUP).getItemMeta())) {
                 event.getWhoClicked().teleport(new Location(Bukkit.getWorld("purple"),242.5, 63, 1348.5));
                 event.getWhoClicked().sendMessage(ChatColor.YELLOW + "Teleporting..");
