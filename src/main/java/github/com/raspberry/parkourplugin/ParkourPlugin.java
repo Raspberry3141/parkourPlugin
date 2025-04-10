@@ -5,6 +5,7 @@ import github.com.raspberry.parkourplugin.GUIInventories.InventoryList;
 import github.com.raspberry.parkourplugin.GUIInventories.ItemStackHashRegister;
 import github.com.raspberry.parkourplugin.GUIInventories.MenuCommand;
 import github.com.raspberry.parkourplugin.GUIInventories.RightCLickItemInMenuListener;
+import github.com.raspberry.parkourplugin.checkpoint.ParkourIdManager;
 import github.com.raspberry.parkourplugin.checkpoint.eventHandlerMenu;
 import github.com.raspberry.parkourplugin.playerItemsManager.PlayerCapabilityController;
 import github.com.raspberry.parkourplugin.checkpoint.CommandPcp;
@@ -17,6 +18,8 @@ public final class ParkourPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        ParkourIdManager pkmgr = new ParkourIdManager();
         pracManager pracsystem = new pracManager();
         //TODO: the itemhash is only craeted after /runTest is run. rmove th initialization somewhere after this method, but before usages.
         ItemStackHashRegister itemhash = new ItemStackHashRegister();

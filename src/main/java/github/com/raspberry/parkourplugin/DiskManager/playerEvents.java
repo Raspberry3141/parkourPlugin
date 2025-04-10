@@ -1,6 +1,5 @@
 package github.com.raspberry.parkourplugin.DiskManager;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -79,14 +78,12 @@ public class playerEvents implements Listener {
                     String sqlUpdate = "UPDATE InGameName SET IP = ? WHERE UUID = ?";
                     try (PreparedStatement pstmtUpdate = conn.prepareStatement(sqlUpdate)) {
                         pstmtUpdate.setString(1, IP);
-                        pstmtUpdate.setString(2, UUID);
                         pstmtUpdate.executeUpdate();
                         System.out.println("IP updated successfully for UUID: " + UUID);
                     } catch (SQLException e) {
                         System.err.println("Error updating IP: " + e.getMessage());
                     }
                 }
-
             } catch (SQLException e) {
                 System.err.println(e.getMessage());
             }
