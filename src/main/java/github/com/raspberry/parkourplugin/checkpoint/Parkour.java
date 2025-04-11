@@ -9,7 +9,7 @@ public class Parkour {
     long id;
     LocalDateTime publishedDate;
     String author;
-    String verifyer;
+    String verifier;
     boolean published = false;
 
     public Parkour(ParkourIdManager pkm) {
@@ -19,11 +19,12 @@ public class Parkour {
     }
 
     private boolean publish(Player player) {
-        if () {
+        if (true) {
             publishedDate = LocalDateTime.now();
             author = player.getDisplayName();
             published = true;
             return true;
+        }
+        return false;
     }
-
 }
