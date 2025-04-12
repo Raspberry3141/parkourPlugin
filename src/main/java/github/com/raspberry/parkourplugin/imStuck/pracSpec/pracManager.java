@@ -1,4 +1,4 @@
-package github.com.raspberry.parkourplugin.pracSpec;
+package github.com.raspberry.parkourplugin.imStuck.pracSpec;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;

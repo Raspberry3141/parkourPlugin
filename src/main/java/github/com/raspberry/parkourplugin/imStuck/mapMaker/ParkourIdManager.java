@@ -1,4 +1,4 @@
-package github.com.raspberry.parkourplugin.checkpoint;
+package github.com.raspberry.parkourplugin.imStuck.mapMaker;
 
 import java.io.File;
 import java.io.FileNotFoundException;

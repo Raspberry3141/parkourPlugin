@@ -1,6 +1,6 @@
-package github.com.raspberry.parkourplugin.playerItemsManager;
+package github.com.raspberry.parkourplugin.imStuck.playerItemsManager;
 
-import github.com.raspberry.parkourplugin.GUIInventories.ItemStackHashRegister;
+import github.com.raspberry.parkourplugin.imStuck.GUIInventories.ItemStackHashRegister;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;

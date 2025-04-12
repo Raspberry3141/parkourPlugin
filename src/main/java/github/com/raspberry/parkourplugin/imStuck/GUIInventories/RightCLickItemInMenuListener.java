@@ -1,4 +1,4 @@
-package github.com.raspberry.parkourplugin.GUIInventories;
+package github.com.raspberry.parkourplugin.imStuck.GUIInventories;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -24,7 +24,7 @@ public class RightCLickItemInMenuListener implements Listener {
 
     @EventHandler
     public void RightClickOnItem(PlayerInteractEvent event) {
-        if ((event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) &&event.getItem().getItemMeta().equals(items.get(ItemStackHashRegister.ITMES.HUB).getItemMeta())) {
+        if ((event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) && event.getItem() != null && event.getItem().getItemMeta().equals(items.get(ItemStackHashRegister.ITMES.HUB).getItemMeta())) {
             event.getPlayer().openInventory(invlist.InventoryLookUp.get(InventoryList.Inventories.LOBBY));
         }
     }
@@ -45,6 +45,10 @@ public class RightCLickItemInMenuListener implements Listener {
 
             } else if (event.getCurrentItem().getItemMeta().equals(items.get(ItemStackHashRegister.ITMES.COMMUNITY).getItemMeta())) {
                 event.getWhoClicked().teleport(new Location(Bukkit.getWorld("cecemels"),0.5, 51, 0.5));
+                event.getWhoClicked().sendMessage(ChatColor.YELLOW + "Teleporting..");
+                event.setCancelled(true);
+            } else if (event.getCurrentItem().getItemMeta().equals(items.get(ItemStackHashRegister.ITMES.HUB).getItemMeta())) {
+                event.getWhoClicked().teleport(new Location(Bukkit.getWorld("small"),3.5, 142, 33.5));
                 event.getWhoClicked().sendMessage(ChatColor.YELLOW + "Teleporting..");
                 event.setCancelled(true);
             }

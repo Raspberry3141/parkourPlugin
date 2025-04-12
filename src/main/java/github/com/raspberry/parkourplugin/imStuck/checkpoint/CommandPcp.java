@@ -1,6 +1,6 @@
-package github.com.raspberry.parkourplugin.checkpoint;
+package github.com.raspberry.parkourplugin.imStuck.checkpoint;
 
-import github.com.raspberry.parkourplugin.playerItemsManager.PlayerCapabilityController;
+import github.com.raspberry.parkourplugin.imStuck.playerItemsManager.PlayerCapabilityController;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

@@ -1,4 +1,4 @@
-package github.com.raspberry.parkourplugin.checkpoint;
+package github.com.raspberry.parkourplugin.imStuck.checkpoint;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 import java.util.UUID;
 
-//TODO make this class not a singleton, and instead instantiate it in onEnable() and pass this into arguments to where needed.
+//TODO-REFACTOR: make this class not a singleton, and instead instantiate it in onEnable() and pass this into arguments to where needed.
 public class checkpointManager {
     private static checkpointManager singleton;
 

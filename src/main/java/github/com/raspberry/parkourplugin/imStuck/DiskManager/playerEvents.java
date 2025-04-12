@@ -1,4 +1,4 @@
-package github.com.raspberry.parkourplugin.DiskManager;
+package github.com.raspberry.parkourplugin.imStuck.DiskManager;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

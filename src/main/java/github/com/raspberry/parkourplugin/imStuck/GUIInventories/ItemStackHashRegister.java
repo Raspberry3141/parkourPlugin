@@ -1,4 +1,4 @@
-package github.com.raspberry.parkourplugin.GUIInventories;
+package github.com.raspberry.parkourplugin.imStuck.GUIInventories;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

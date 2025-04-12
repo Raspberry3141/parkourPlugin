@@ -1,6 +1,6 @@
-package github.com.raspberry.parkourplugin.checkpoint;
+package github.com.raspberry.parkourplugin.imStuck.checkpoint;
 
-import github.com.raspberry.parkourplugin.pracSpec.pracManager;
+import github.com.raspberry.parkourplugin.imStuck.pracSpec.pracManager;
 import org.bukkit.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,6 +12,13 @@ public class eventHandlerMenu implements Listener {
 
     public eventHandlerMenu(pracManager prac) {
         pracSystem = prac;
+    }
+
+    @EventHandler
+    public void cancelJumpOnCrops(PlayerInteractEvent event) {
+        if (event.getAction() == Action.PHYSICAL && event.getClickedBlock().getLocation().getBlock().getType() == Material.SOIL) {
+            event.setCancelled(true);
+        }
     }
 
     @EventHandler
@@ -29,7 +36,7 @@ public class eventHandlerMenu implements Listener {
 
     @EventHandler
     public void onCheckpointItem(PlayerInteractEvent event) {
-        if ( (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) &&event.getItem().getType() == Material.CARROT_STICK) {
+        if ( (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) && event.getItem()!=null&&event.getItem().getType() == Material.CARROT_STICK) {
             if (pracSystem.playerCheckpointLocation.get(event.getPlayer().getUniqueId()) == null) {
                 checkpointManager.getInstance().teleportToCheckpoint(event.getPlayer());
             } else {
