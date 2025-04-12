@@ -17,3 +17,8 @@ commands:
     description: opens menu for NPC functionality
     usage: /<command>
     permission: yourplugin.yourcommandpermission
+
+  parkour:
+    description: parkour manager
+    usage: /<command>
+    permission: yourplugin.yourcommandpermission

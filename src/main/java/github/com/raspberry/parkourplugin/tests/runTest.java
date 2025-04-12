@@ -1,20 +1,25 @@
 package github.com.raspberry.parkourplugin.tests;
 
+import github.com.raspberry.parkourplugin.ParkourPlugin;
 import github.com.raspberry.parkourplugin.imStuck.GUIInventories.InventoryList;
 import github.com.raspberry.parkourplugin.imStuck.GUIInventories.ItemStackHashRegister;
-import org.bukkit.WorldCreator;
-import org.bukkit.WorldType;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.io.File;
+import java.io.IOException;
+
+
 public class runTest implements CommandExecutor {
     ItemStackHashRegister factory;
     InventoryList invlst;
-    public runTest(ItemStackHashRegister itemfactory, InventoryList invls) {
+    ParkourPlugin plug;
+    public runTest(ParkourPlugin pkplug,ItemStackHashRegister itemfactory, InventoryList invls) {
         factory = itemfactory;
         invlst =invls;
+        plug =pkplug;
     }
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -25,6 +30,16 @@ public class runTest implements CommandExecutor {
         player.getInventory().addItem(factory.SpecialItems.get(ItemStackHashRegister.ITMES.PRAC));
         player.getInventory().addItem(factory.SpecialItems.get(ItemStackHashRegister.ITMES.PCP));
         player.getInventory().addItem(factory.SpecialItems.get(ItemStackHashRegister.ITMES.FLY));
+
+
+        plug.getCustomConfig().set("text", "changed from hi");
+        plug.getCustomConfig().createSection("newpath.newestpath");
+
+        try {
+            plug.getCustomConfig().save(plug.customConfigFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         return true;
     }

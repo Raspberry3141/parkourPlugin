@@ -32,7 +32,7 @@ public class ParkourIdManager {
             FileWriter myWriter = new FileWriter("C:\\Database\\parkourID.txt");
             myWriter.write(String.valueOf(id));
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
+            System.out.println("Successfully updated PK ID: ParkourManager.java Line35");
         } catch ( IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();

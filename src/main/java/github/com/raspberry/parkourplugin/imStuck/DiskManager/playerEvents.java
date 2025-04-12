@@ -62,6 +62,7 @@ public class playerEvents implements Listener {
         }
     }
 
+    //TODO-BUG:IP not being written when a duplicate exists
     private void logIP(Player player, String url) {
         try (Connection conn = DriverManager.getConnection(url)) {
             System.out.println("Connection to SQLite has been established.");
