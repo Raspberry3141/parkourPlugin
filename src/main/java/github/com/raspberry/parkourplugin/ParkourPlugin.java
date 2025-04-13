@@ -35,7 +35,7 @@ public final class ParkourPlugin extends JavaPlugin {
         InventoryList invlist = new InventoryList(itemhash);
         configFileManager configFileManager = new configFileManager(this);
 
-        this.getCommand("parkour").setExecutor(new mapMakerCommand(pkmgr));
+        this.getCommand("parkour").setExecutor(new mapMakerCommand(pkmgr,configFileManager));
 
         getServer().getPluginManager().registerEvents(new pracEventHandler(pracsystem,capabilityController, itemhash),this);
 

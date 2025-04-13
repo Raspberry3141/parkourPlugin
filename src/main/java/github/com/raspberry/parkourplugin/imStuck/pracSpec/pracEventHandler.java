@@ -18,7 +18,7 @@ public class pracEventHandler implements Listener {
         items = itemstack;
     }
     @EventHandler
-    public void togglePrac(PlayerInteractEvent event) {
+    public void toghglePrac(PlayerInteractEvent event) {
         //TODO: add isonground
         if (event.getItem() !=null && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) &&event.getItem().getItemMeta().equals(items.SpecialItems.get(ItemStackHashRegister.ITMES.PRAC).getItemMeta())) {
             if (pracSystem.playerCheckpointLocation.get(event.getPlayer().getUniqueId()) == null) {

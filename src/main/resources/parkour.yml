@@ -1,0 +1,26 @@
+parkour:
+  ID:
+    name:
+    author:
+    date:
+    checkpoints:
+      -
+        world:
+        x:
+        y:
+        z:
+      -
+        world:
+        x:
+        y:
+        z:
+    players:
+      UUID:
+        displayName:
+        isFinished:
+        tickTime:
+        checkpoint:
+        lastx:
+        lasty:
+        lastz:
+        lastworld:
