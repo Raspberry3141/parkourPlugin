@@ -1,6 +1,7 @@
 package github.com.raspberry.parkourplugin.imStuck.Helper;
 
 import github.com.raspberry.parkourplugin.ParkourPlugin;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -14,11 +15,13 @@ public class configFileManager {
     private FileConfiguration playerConfig;
     private FileConfiguration parkourConfig;
 
+
     ParkourPlugin thePlugin;
 
     public configFileManager(ParkourPlugin pkplug) {
         thePlugin = pkplug;
         createCustomConfig();
+        Bukkit.getLogger().info("CONFIG MANAGER CREATED AS EXPECTED__________________________");
     }
 
     private void createCustomConfig() {
@@ -40,6 +43,30 @@ public class configFileManager {
             playerConfig.load(parkourListFile);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
+        }
+    }
+
+    public FileConfiguration getPlayerConfigFile() {
+        return this.playerConfig;
+    }
+
+    public FileConfiguration getParkourConfigFile() {
+        return this.parkourConfig;
+    }
+
+    public void savePlayerConfigFile(FileConfiguration fileconf) {
+        try {
+                fileconf.save(playerListFile);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+    }
+
+    public void saveParkourConfigFile(FileConfiguration fileconf) {
+        try {
+            fileconf.save(parkourListFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

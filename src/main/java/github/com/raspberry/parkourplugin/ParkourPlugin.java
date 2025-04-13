@@ -48,7 +48,7 @@ public final class ParkourPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new RightCLickItemInMenuListener(invlist,itemhash),this);
         this.getCommand("runtest").setExecutor(new runTest(this,itemhash,invlist));
 
-        getServer().getPluginManager().registerEvents(new playerEvents(),this);
+        getServer().getPluginManager().registerEvents(new playerEvents(configFileManager),this);
     }
 
     @Override

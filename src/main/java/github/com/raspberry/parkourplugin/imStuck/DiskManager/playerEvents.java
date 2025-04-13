@@ -1,5 +1,7 @@
 package github.com.raspberry.parkourplugin.imStuck.DiskManager;
 
+import github.com.raspberry.parkourplugin.imStuck.Helper.configFileManager;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,6 +11,11 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import java.sql.*;
 
 public class playerEvents implements Listener {
+    configFileManager fileManager;
+
+    public playerEvents(configFileManager conffilemgr) {
+        fileManager = conffilemgr;
+    }
 
     @EventHandler
     private void onLogin(PlayerLoginEvent event) throws ClassNotFoundException {
@@ -31,6 +38,16 @@ public class playerEvents implements Listener {
             System.out.println("Connection to SQLite has been established.");
             String UUID = player.getUniqueId().toString();
             String InGameName = player.getName();
+
+            FileConfiguration config = fileManager.getPlayerConfigFile();
+
+            config.createSection(UUID);
+            config.createSection(UUID + ".dsiplayName");
+            config.createSection(UUID + ".rank");
+            config.createSection(UUID + ".IP");
+            config.set(UUID + ".dsiplayName",player.getDisplayName());
+            fileManager.savePlayerConfigFile(config);
+            //TODO-REFACTOR: remove db and switch to just yml config file
 
 
             String sqlCheck = "SELECT COUNT(*) FROM InGameName WHERE UUID = ?";
@@ -62,14 +79,19 @@ public class playerEvents implements Listener {
         }
     }
 
-    //TODO-BUG:IP not being written when a duplicate exists
+    //TODO-BUG:(see the other comments in the file)IP not being written when a duplicate exists
     private void logIP(Player player, String url) {
         try (Connection conn = DriverManager.getConnection(url)) {
             System.out.println("Connection to SQLite has been established.");
             String IP = player.getAddress().getAddress().getHostAddress();
             String UUID = player.getUniqueId().toString();
 
+            FileConfiguration config = fileManager.getPlayerConfigFile();
+            config.createSection(UUID+".IP");
+            config.set(UUID + ".IP",IP);
+            fileManager.savePlayerConfigFile(config);
 
+            //TODO-REFACTOR: remove db and switch to just yml config file
             String sqlCheck = "SELECT COUNT(*) FROM InGameName WHERE IP = ?";
             try (PreparedStatement pstmtCheck = conn.prepareStatement(sqlCheck)) {
                 pstmtCheck.setString(1, IP);

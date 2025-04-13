@@ -31,14 +31,14 @@ public class runTest implements CommandExecutor {
         player.getInventory().addItem(factory.SpecialItems.get(ItemStackHashRegister.ITMES.FLY));
 
 
-        plug.getCustomConfig().set("text", "changed from hi");
-        plug.getCustomConfig().createSection("newpath.newestpath");
+        //plug.getCustomConfig().set("text", "changed from hi");
+        //plug.getCustomConfig().createSection("newpath.newestpath");
 
-        try {
-            plug.getCustomConfig().save(plug.customConfigFile);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        //try {
+        //    plug.getCustomConfig().save(plug.customConfigFile);
+        //} catch (IOException e) {
+        //    throw new RuntimeException(e);
+        //}
 
         return true;
     }
