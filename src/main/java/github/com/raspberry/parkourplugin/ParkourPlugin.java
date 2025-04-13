@@ -5,6 +5,7 @@ import github.com.raspberry.parkourplugin.imStuck.GUIInventories.InventoryList;
 import github.com.raspberry.parkourplugin.imStuck.GUIInventories.ItemStackHashRegister;
 import github.com.raspberry.parkourplugin.imStuck.GUIInventories.MenuCommand;
 import github.com.raspberry.parkourplugin.imStuck.GUIInventories.RightCLickItemInMenuListener;
+import github.com.raspberry.parkourplugin.imStuck.Helper.configFileManager;
 import github.com.raspberry.parkourplugin.imStuck.mapMaker.ParkourIdManager;
 import github.com.raspberry.parkourplugin.imStuck.checkpoint.eventHandlerMenu;
 import github.com.raspberry.parkourplugin.imStuck.mapMaker.mapMakerCommand;
@@ -22,19 +23,17 @@ import java.io.File;
 import java.io.IOException;
 
 public final class ParkourPlugin extends JavaPlugin {
-    public File customConfigFile;
-    //private File customConfigFile2;
-    private FileConfiguration customConfig;
 
     @Override
     public void onEnable() {
 
         ParkourIdManager pkmgr = new ParkourIdManager();
         pracManager pracsystem = new pracManager();
-        //TODO: the itemhash is only craeted after /runTest is run. rmove th initialization somewhere after this method, but before usages.
+        //TODO: the itemhash is only created after /runTest is run. remove th initialization somewhere after this method, but before usages.
         ItemStackHashRegister itemhash = new ItemStackHashRegister();
         PlayerCapabilityController capabilityController = new PlayerCapabilityController(itemhash);
         InventoryList invlist = new InventoryList(itemhash);
+        configFileManager configFileManager = new configFileManager(this);
 
         this.getCommand("parkour").setExecutor(new mapMakerCommand(pkmgr));
 
@@ -50,35 +49,6 @@ public final class ParkourPlugin extends JavaPlugin {
         this.getCommand("runtest").setExecutor(new runTest(this,itemhash,invlist));
 
         getServer().getPluginManager().registerEvents(new playerEvents(),this);
-
-        createCustomConfig();
-    }
-
-    public FileConfiguration getCustomConfig() {
-        return this.customConfig;
-    }
-
-    private void createCustomConfig() {
-        customConfigFile = new File(getDataFolder(), "custom.yml");
-        //customConfigFile2 = new File(getDataFolder(), "secondcustom.yml");
-
-        if (!customConfigFile.exists()) {
-            customConfigFile.getParentFile().mkdirs();
-            saveResource("custom.yml", false);
-        }
-        //if (!customConfigFile2.exists()) {
-        //    customConfigFile2.getParentFile().mkdirs();
-        //    saveResource("secondcustom.yml", false);
-        //}
-
-
-        customConfig = new YamlConfiguration();
-        try {
-            customConfig.load(customConfigFile);
-            //customConfig.load(customConfigFile2);
-        } catch (IOException | InvalidConfigurationException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

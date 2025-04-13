@@ -1,0 +1,10 @@
+player:
+  UUID1:
+      displayName: pie
+      Rank: 1
+      IP: 123
+
+  UUID2:
+    displayName: pie
+    Rank: 1
+    IP: 123
