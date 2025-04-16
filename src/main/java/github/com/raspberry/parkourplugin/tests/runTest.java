@@ -3,6 +3,8 @@ package github.com.raspberry.parkourplugin.tests;
 import github.com.raspberry.parkourplugin.ParkourPlugin;
 import github.com.raspberry.parkourplugin.imStuck.GUIInventories.InventoryList;
 import github.com.raspberry.parkourplugin.imStuck.GUIInventories.ItemStackHashRegister;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -29,6 +31,7 @@ public class runTest implements CommandExecutor {
         player.getInventory().addItem(factory.SpecialItems.get(ItemStackHashRegister.ITMES.PRAC));
         player.getInventory().addItem(factory.SpecialItems.get(ItemStackHashRegister.ITMES.PCP));
         player.getInventory().addItem(factory.SpecialItems.get(ItemStackHashRegister.ITMES.FLY));
+
 
 
         //plug.getCustomConfig().set("text", "changed from hi");

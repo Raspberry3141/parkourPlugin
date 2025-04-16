@@ -1,26 +1,21 @@
-parkour:
-  ID:
-    name:
-    author:
-    date:
-    checkpoints:
-      -
-        world:
-        x:
-        y:
-        z:
-      -
-        world:
-        x:
-        y:
-        z:
-    players:
-      UUID:
-        displayName:
-        isFinished:
-        tickTime:
-        checkpoint:
-        lastx:
-        lasty:
-        lastz:
-        lastworld:
+55cf4242-5dbd-47f4-9dc7-e1f9a726278e:
+  author: KetchupOnMelon
+  date: '2025-04-13T19:50:06.360'
+  checkpoints:
+    - x: -2
+      y: 65
+      z: 0
+    - x: -5
+      y: 65
+      z: 0
+  name: test9
+  players:
+    UUID:
+      displayName: hi
+      lastLoc: 23124.342,32424,1233,134,43
+      lastcp: 21,3333,2332
+
+    UUID1:
+      displayName: hi
+      lastLoc: 23124.342,32424,1233,134,43
+      lastcp: 21,3333,2332

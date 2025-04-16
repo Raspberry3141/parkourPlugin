@@ -9,9 +9,11 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public class eventHandlerMenu implements Listener {
     pracManager pracSystem;
+    checkpointManager checkpointmanager;
 
-    public eventHandlerMenu(pracManager prac) {
+    public eventHandlerMenu(pracManager prac,checkpointManager cpmg) {
         pracSystem = prac;
+        checkpointmanager = cpmg;
     }
 
     @EventHandler
@@ -30,19 +32,27 @@ public class eventHandlerMenu implements Listener {
             float yaw = event.getPlayer().getLocation().getYaw();
             float pitch = event.getPlayer().getLocation().getPitch();
             World world = Bukkit.getWorld(event.getPlayer().getWorld().getUID());
-            checkpointManager.getInstance().setCheckpointLoc(new Location(world,xLoc+0.5D,yLoc,zLoc+0.5D,yaw,pitch),event.getPlayer());
+            checkpointmanager.setCheckpointLoc(new Location(world,xLoc+0.5D,yLoc,zLoc+0.5D,yaw,pitch),event.getPlayer());
         }
     }
 
+
+
     @EventHandler
     public void onCheckpointItem(PlayerInteractEvent event) {
-        if ( (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) && event.getItem()!=null&&event.getItem().getType() == Material.CARROT_STICK) {
+        //TODO:fix the null pointer error when right clicked
+        if (  checkpointmanager.playerCheckpointLocation.get(event.getPlayer().getUniqueId()).getWorld()!=null
+                && event.getPlayer().getWorld().equals(checkpointmanager.playerCheckpointLocation.get(event.getPlayer().getUniqueId()).getWorld())
+                && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)
+                && event.getItem()!=null
+                && event.getItem().getType() == Material.CARROT_STICK) {
             if (pracSystem.playerCheckpointLocation.get(event.getPlayer().getUniqueId()) == null) {
-                checkpointManager.getInstance().teleportToCheckpoint(event.getPlayer());
+                checkpointmanager.teleportToCheckpoint(event.getPlayer());
             } else {
                 pracSystem.teleportToPracLoc(event.getPlayer());
                 event.getPlayer().sendMessage(ChatColor.YELLOW + "Teleporting to Checkpoint..");
             }
         }
     }
+
 }

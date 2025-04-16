@@ -8,15 +8,17 @@ import org.bukkit.entity.Player;
 
 public class CommandPcp implements CommandExecutor {
     PlayerCapabilityController playercontroller;
-    public CommandPcp(PlayerCapabilityController pcapabcntl) {
+    checkpointManager cpmanager;
+    public CommandPcp(PlayerCapabilityController pcapabcntl,checkpointManager cpmgr) {
         playercontroller = pcapabcntl;
+        cpmanager = cpmgr;
     }
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (commandSender instanceof Player) {
             if (playercontroller.getCapabilities((Player)commandSender) == PlayerCapabilityController.playerState.INPARKOUR) {
-            checkpointManager.getInstance().teleportToCheckpoint(((Player) commandSender).getPlayer());
+                cpmanager.teleportToCheckpoint(((Player) commandSender).getPlayer());
             }
         }
         return true;

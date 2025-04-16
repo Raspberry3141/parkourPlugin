@@ -24,6 +24,10 @@ public class configFileManager {
         Bukkit.getLogger().info("CONFIG MANAGER CREATED AS EXPECTED__________________________");
     }
 
+    public ParkourPlugin getThePlugin() {
+        return this.thePlugin;
+    }
+
     private void createCustomConfig() {
         playerListFile = new File(thePlugin.getDataFolder(), "player.yml");
         parkourListFile = new File(thePlugin.getDataFolder(), "parkour.yml");
@@ -38,9 +42,10 @@ public class configFileManager {
         }
 
         playerConfig = new YamlConfiguration();
+        parkourConfig = new YamlConfiguration();
         try {
             playerConfig.load(playerListFile);
-            playerConfig.load(parkourListFile);
+            parkourConfig.load(parkourListFile);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }

@@ -6,6 +6,8 @@ import github.com.raspberry.parkourplugin.imStuck.GUIInventories.ItemStackHashRe
 import github.com.raspberry.parkourplugin.imStuck.GUIInventories.MenuCommand;
 import github.com.raspberry.parkourplugin.imStuck.GUIInventories.RightCLickItemInMenuListener;
 import github.com.raspberry.parkourplugin.imStuck.Helper.configFileManager;
+import github.com.raspberry.parkourplugin.imStuck.checkpoint.checkpointManager;
+import github.com.raspberry.parkourplugin.imStuck.checkpoint.parkourLoaderEvent;
 import github.com.raspberry.parkourplugin.imStuck.mapMaker.ParkourIdManager;
 import github.com.raspberry.parkourplugin.imStuck.checkpoint.eventHandlerMenu;
 import github.com.raspberry.parkourplugin.imStuck.mapMaker.mapMakerCommand;
@@ -14,13 +16,8 @@ import github.com.raspberry.parkourplugin.imStuck.checkpoint.CommandPcp;
 import github.com.raspberry.parkourplugin.imStuck.pracSpec.pracEventHandler;
 import github.com.raspberry.parkourplugin.imStuck.pracSpec.pracManager;
 import github.com.raspberry.parkourplugin.tests.runTest;
-import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.io.IOException;
 
 public final class ParkourPlugin extends JavaPlugin {
 
@@ -34,14 +31,17 @@ public final class ParkourPlugin extends JavaPlugin {
         PlayerCapabilityController capabilityController = new PlayerCapabilityController(itemhash);
         InventoryList invlist = new InventoryList(itemhash);
         configFileManager configFileManager = new configFileManager(this);
+        checkpointManager cpmgr = new checkpointManager(configFileManager);
 
         this.getCommand("parkour").setExecutor(new mapMakerCommand(pkmgr,configFileManager));
 
         getServer().getPluginManager().registerEvents(new pracEventHandler(pracsystem,capabilityController, itemhash),this);
 
-        getServer().getPluginManager().registerEvents(new eventHandlerMenu(pracsystem),this);
+        getServer().getPluginManager().registerEvents(new eventHandlerMenu(pracsystem,cpmgr),this);
 
-        this.getCommand("pcp").setExecutor(new CommandPcp(capabilityController));
+        getServer().getPluginManager().registerEvents(new parkourLoaderEvent(configFileManager,cpmgr),this);
+
+        this.getCommand("pcp").setExecutor(new CommandPcp(capabilityController,cpmgr));
 
         this.getCommand("menu").setExecutor(new MenuCommand(invlist));
 
