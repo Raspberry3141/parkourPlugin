@@ -35,11 +35,11 @@ public final class ParkourPlugin extends JavaPlugin {
 
         this.getCommand("parkour").setExecutor(new mapMakerCommand(pkmgr,configFileManager));
 
-        getServer().getPluginManager().registerEvents(new pracEventHandler(pracsystem,capabilityController, itemhash),this);
+        getServer().getPluginManager().registerEvents(new pracEventHandler(pracsystem,capabilityController, itemhash,cpmgr),this);
 
         getServer().getPluginManager().registerEvents(new eventHandlerMenu(pracsystem,cpmgr),this);
 
-        getServer().getPluginManager().registerEvents(new parkourLoaderEvent(configFileManager,cpmgr),this);
+        getServer().getPluginManager().registerEvents(new parkourLoaderEvent(configFileManager,cpmgr,capabilityController),this);
 
         this.getCommand("pcp").setExecutor(new CommandPcp(capabilityController,cpmgr));
 

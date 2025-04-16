@@ -1,6 +1,7 @@
 package github.com.raspberry.parkourplugin.imStuck.pracSpec;
 
 import github.com.raspberry.parkourplugin.imStuck.GUIInventories.ItemStackHashRegister;
+import github.com.raspberry.parkourplugin.imStuck.checkpoint.checkpointManager;
 import github.com.raspberry.parkourplugin.imStuck.playerItemsManager.PlayerCapabilityController;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -12,10 +13,12 @@ public class pracEventHandler implements Listener {
     pracManager pracSystem;
     PlayerCapabilityController capabCtrl;
     ItemStackHashRegister items;
-    public pracEventHandler(pracManager prac, PlayerCapabilityController capabilitycontroller, ItemStackHashRegister itemstack) {
+    checkpointManager cpmgr;
+    public pracEventHandler(pracManager prac, PlayerCapabilityController capabilitycontroller, ItemStackHashRegister itemstack, checkpointManager cpmg) {
         pracSystem = prac;
         capabCtrl = capabilitycontroller;
         items = itemstack;
+        cpmgr = cpmg;
     }
     @EventHandler
     public void togglePrac(PlayerInteractEvent event) {
@@ -24,6 +27,7 @@ public class pracEventHandler implements Listener {
             if (pracSystem.playerCheckpointLocation.get(event.getPlayer().getUniqueId()) == null) {
                 capabCtrl.setCapabilities(event.getPlayer(), PlayerCapabilityController.playerState.INPRAC);
                 pracSystem.enterPrac(event.getPlayer());
+                cpmgr.updateLastPos(event.getPlayer());
             } else {
                 pracSystem.leavePrac(event.getPlayer());
                 capabCtrl.setCapabilities(event.getPlayer(), PlayerCapabilityController.playerState.INPARKOUR);

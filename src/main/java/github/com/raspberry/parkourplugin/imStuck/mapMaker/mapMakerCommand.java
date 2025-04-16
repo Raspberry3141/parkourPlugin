@@ -32,7 +32,7 @@ public class mapMakerCommand implements CommandExecutor, SqlInterface {
             wc.createWorld();
             player.teleport(new Location(Bukkit.getWorld(String.valueOf(id)), 0.5, 64.0, 0.5));
 
-            initializeParkourInYml(player.getWorld().getUID().toString(),strings[1], player.getDisplayName(),LocalDateTime.now().toString());
+            initializeParkourInYml(player.getWorld().getUID().toString(),strings[1], player.getDisplayName(),LocalDateTime.now().toString(),"parkour");
             try {
                 Parkour newpk = new Parkour(id);
             } catch (ClassNotFoundException e) {
@@ -102,7 +102,7 @@ public class mapMakerCommand implements CommandExecutor, SqlInterface {
         }
     }
 
-    private void initializeParkourInYml(String uuid, String displayName, String author, String date) {
+    private void initializeParkourInYml(String uuid, String displayName, String author, String date,String type) {
         FileConfiguration config = conffileman.getParkourConfigFile();
         config.createSection(uuid);
         config.createSection(".name");
@@ -110,9 +110,11 @@ public class mapMakerCommand implements CommandExecutor, SqlInterface {
         config.createSection(uuid+".date");
         config.createSection(uuid+".checkpoints");
         config.createSection(uuid+".players");
+        config.createSection(uuid+".type");
         config.set(uuid+".name",displayName);
         config.set(uuid+".author", author);
         config.set(uuid+".date",date);
+        config.set(uuid+".date",type);
         conffileman.saveParkourConfigFile(config);
     }
 

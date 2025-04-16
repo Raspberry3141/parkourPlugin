@@ -23,6 +23,7 @@ public class checkpointManager {
         if (oldPlayerCheckpointLoc==null || !oldPlayerCheckpointLoc.equals(loc)) {
             playerCheckpointLocation.put(player.getUniqueId(),loc);
             updateCheckpoint(player);
+            updateLastPos(player);
             player.sendMessage(ChatColor.YELLOW + "Checkpoint reached");
         }
     }
@@ -41,21 +42,26 @@ public class checkpointManager {
 
         HashMap<String,String> playerInfo = new HashMap<>();
         playerInfo.put("displayName",player.getDisplayName());
-        playerInfo.put("lastCpLoc",String.valueOf(player.getLocation().getBlockX()) + "/" +
-                String.valueOf(player.getLocation().getBlockY()) + "/" +
-                String.valueOf(player.getLocation().getBlockZ()));
+        playerInfo.put("lastCpLoc",player.getLocation().getBlockX() + "/" +
+                player.getLocation().getBlockY() + "/" +
+                player.getLocation().getBlockZ());
 
         config.createSection(uuidKey+".players."+player.getUniqueId());
         config.set(uuidKey+".players."+player.getUniqueId(),playerInfo);
         conffilemgr.saveParkourConfigFile(config);
     }
 
-    public HashMap<String,String> updateLastPos(HashMap<String,String> playerInfo,Player player) {
-        playerInfo.put("lastLoc", String.valueOf(player.getLocation().getX())+"/"+
-                String.valueOf(player.getLocation().getY())+"/"+
-                String.valueOf(player.getLocation().getZ())+"/"+
-                String.valueOf(player.getLocation().getYaw())+"/"+
-                String.valueOf(player.getLocation().getPitch()));
-        return playerInfo;
+    public void updateLastPos(Player player) {
+        String uuidKey = player.getWorld().getUID().toString();
+        FileConfiguration config = conffilemgr.getParkourConfigFile();
+        HashMap<String,String> playerInfo = new HashMap<>();
+        playerInfo.put("lastLoc", player.getLocation().getX()+"/"+
+                player.getLocation().getY()+"/"+
+                player.getLocation().getZ()+"/"+
+                player.getLocation().getYaw()+"/"+
+                player.getLocation().getPitch());
+        config.createSection(uuidKey+".players."+player.getUniqueId());
+        config.set(uuidKey+".players."+player.getUniqueId(),playerInfo);
+        conffilemgr.saveParkourConfigFile(config);
     }
 }

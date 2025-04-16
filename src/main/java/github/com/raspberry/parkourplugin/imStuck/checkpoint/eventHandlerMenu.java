@@ -41,7 +41,7 @@ public class eventHandlerMenu implements Listener {
     @EventHandler
     public void onCheckpointItem(PlayerInteractEvent event) {
         //TODO:fix the null pointer error when right clicked
-        if (  checkpointmanager.playerCheckpointLocation.get(event.getPlayer().getUniqueId()).getWorld()!=null
+        if (checkpointmanager.playerCheckpointLocation.get(event.getPlayer().getUniqueId()).getWorld()!=null
                 && event.getPlayer().getWorld().equals(checkpointmanager.playerCheckpointLocation.get(event.getPlayer().getUniqueId()).getWorld())
                 && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)
                 && event.getItem()!=null
