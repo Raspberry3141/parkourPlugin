@@ -46,8 +46,8 @@ public class parkourLoaderEvent implements Listener {
     @EventHandler
     private void onPlayerTeleport(PlayerTeleportEvent event) {
         FileConfiguration config = configFileMan.getParkourConfigFile();
-        setCapabilityWhenLeft(event.getPlayer(),config);
         if ((capabilityController.getCapabilities(event.getPlayer())== PlayerCapabilityController.playerState.ISBUILDING || capabilityController.getCapabilities(event.getPlayer())== PlayerCapabilityController.playerState.INPARKOUR) && !event.getFrom().equals(event.getPlayer().getWorld())) {
+
             String worldUuid = event.getFrom().getWorld().getUID().toString();
             String playerUuid = event.getPlayer().getUniqueId().toString();
             Location playerLastLoc = event.getFrom();
@@ -66,14 +66,6 @@ public class parkourLoaderEvent implements Listener {
         }
     }
 
-    private void setCapabilityWhenLeft(Player player,FileConfiguration conf) {
-        if (capabilityController.getCapabilities(player)== PlayerCapabilityController.playerState.INPRAC) {
-
-        }
-        if (conf.getString(player.getWorld().getUID().toString()+".type")=="parkour") {
-            capabilityController.setCapabilities(player, PlayerCapabilityController.playerState.INPARKOUR);
-        }
-    }
 
 
     private String[] parseStringLoc(String string) {
